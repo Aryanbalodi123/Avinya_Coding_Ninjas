@@ -110,7 +110,7 @@ export default function TeamPage() {
          <div className="relative h-full w-full">
             <RippleGrid
               enableRainbow={false}
-              gridColor="#ffffff"
+              gridColor="#ff7f00"
               rippleIntensity={0.05}
               gridSize={10}
               gridThickness={15}
