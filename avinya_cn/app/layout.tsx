@@ -9,14 +9,12 @@ export const metadata: Metadata = {
   description: "Team management portal",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
+    <html lang="en" suppressHydrationWarning>
+      <body className={`${inter.className} min-h-screen bg-black text-white`}>
+        {children}
+      </body>
     </html>
   );
 }

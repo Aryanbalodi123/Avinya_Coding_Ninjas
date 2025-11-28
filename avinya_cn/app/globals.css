@@ -2,17 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #000000;
-  --foreground: #ffffff;
-}
-
-html,
-body {
-  height: 100%;
-  width: 100%;
+/* Force dark background and ensure full-height */
+html, body, #__next {
+  height: 100% !important;
+  width: 100% !important;
   margin: 0;
   padding: 0;
-  background-color: #000000 !important; /* Force Black */
-  color: #ffffff !important;
+  background-color: #000 !important;
+  color: #fff !important;
+}
+
+/* Optional: ensure root elements have no accidental backgrounds */
+:root {
+  --background: #000;
+  --foreground: #fff;
 }
