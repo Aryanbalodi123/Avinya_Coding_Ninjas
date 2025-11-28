@@ -78,59 +78,59 @@ export default function AdminPage() {
       <div className="fixed bottom-20 right-20 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl animate-pulse" 
            style={{ animationDelay: '1s' }}></div>
 
-      <div className="relative z-10 container mx-auto px-6 py-12">
+      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16 max-w-[1600px]">
         {/* Header */}
-        <div className="mb-12">
-          <div className="flex items-center gap-4 mb-6">
-            <div className="w-2 h-16 bg-gradient-to-b from-orange-500 to-orange-700 rounded-full animate-pulse"></div>
+        <div className="mb-8 sm:mb-12 lg:mb-16">
+          <div className="flex items-center gap-3 sm:gap-4 mb-6 sm:mb-8">
+            <div className="w-1.5 sm:w-2 h-12 sm:h-16 bg-gradient-to-b from-orange-500 to-orange-700 rounded-full animate-pulse"></div>
             <div>
-              <h1 className="text-6xl font-bold bg-gradient-to-r from-orange-400 via-orange-500 to-orange-300 bg-clip-text text-transparent">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-orange-400 via-orange-500 to-orange-300 bg-clip-text text-transparent">
                 ADMIN CONTROL PANEL
               </h1>
-              <p className="text-gray-400 mt-2 text-lg">Real-time Team Management Dashboard</p>
+              <p className="text-gray-400 mt-1 sm:mt-2 text-sm sm:text-base lg:text-lg">Real-time Team Management Dashboard</p>
             </div>
           </div>
 
           {/* Stats Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-5 lg:gap-8 mb-6 sm:mb-8 lg:mb-10">
             <div className="relative group">
               <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-xl blur opacity-25 group-hover:opacity-40 transition-opacity"></div>
-              <div className="relative bg-black/80 backdrop-blur-sm border border-cyan-500/30 rounded-xl p-6 hover:border-cyan-500/60 transition-all">
-                <div className="text-cyan-400 text-sm font-semibold mb-2">TOTAL TEAMS</div>
-                <div className="text-4xl font-bold text-white">{teams.length}</div>
+              <div className="relative bg-black/80 backdrop-blur-sm border border-cyan-500/30 rounded-lg sm:rounded-xl p-3 sm:p-4 lg:p-6 hover:border-cyan-500/60 transition-all">
+                <div className="text-cyan-400 text-xs sm:text-sm font-semibold mb-1 sm:mb-2">TOTAL TEAMS</div>
+                <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white">{teams.length}</div>
               </div>
             </div>
 
             <div className="relative group">
               <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl blur opacity-25 group-hover:opacity-40 transition-opacity"></div>
-              <div className="relative bg-black/80 backdrop-blur-sm border border-purple-500/30 rounded-xl p-6 hover:border-purple-500/60 transition-all">
-                <div className="text-purple-400 text-sm font-semibold mb-2">TOTAL MEMBERS</div>
-                <div className="text-4xl font-bold text-white">{totalMembers}</div>
+              <div className="relative bg-black/80 backdrop-blur-sm border border-purple-500/30 rounded-lg sm:rounded-xl p-3 sm:p-4 lg:p-6 hover:border-purple-500/60 transition-all">
+                <div className="text-purple-400 text-xs sm:text-sm font-semibold mb-1 sm:mb-2">TOTAL MEMBERS</div>
+                <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white">{totalMembers}</div>
               </div>
             </div>
 
             <div className="relative group">
               <div className="absolute inset-0 bg-gradient-to-r from-green-500 to-emerald-500 rounded-xl blur opacity-25 group-hover:opacity-40 transition-opacity"></div>
-              <div className="relative bg-black/80 backdrop-blur-sm border border-green-500/30 rounded-xl p-6 hover:border-green-500/60 transition-all">
-                <div className="text-green-400 text-sm font-semibold mb-2">ACCEPTED</div>
-                <div className="text-4xl font-bold text-white">{acceptedMembers}</div>
+              <div className="relative bg-black/80 backdrop-blur-sm border border-green-500/30 rounded-lg sm:rounded-xl p-3 sm:p-4 lg:p-6 hover:border-green-500/60 transition-all">
+                <div className="text-green-400 text-xs sm:text-sm font-semibold mb-1 sm:mb-2">ACCEPTED</div>
+                <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white">{acceptedMembers}</div>
               </div>
             </div>
 
             <div className="relative group">
               <div className="absolute inset-0 bg-gradient-to-r from-red-500 to-orange-500 rounded-xl blur opacity-25 group-hover:opacity-40 transition-opacity"></div>
-              <div className="relative bg-black/80 backdrop-blur-sm border border-red-500/30 rounded-xl p-6 hover:border-red-500/60 transition-all">
-                <div className="text-red-400 text-sm font-semibold mb-2">PENDING</div>
-                <div className="text-4xl font-bold text-white">{totalMembers - acceptedMembers}</div>
+              <div className="relative bg-black/80 backdrop-blur-sm border border-red-500/30 rounded-lg sm:rounded-xl p-3 sm:p-4 lg:p-6 hover:border-red-500/60 transition-all">
+                <div className="text-red-400 text-xs sm:text-sm font-semibold mb-1 sm:mb-2">PENDING</div>
+                <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white">{totalMembers - acceptedMembers}</div>
               </div>
             </div>
           </div>
 
           {/* Filters */}
-          <div className="flex gap-4">
+          <div className="flex flex-wrap gap-2 sm:gap-3 lg:gap-5">
             <button
               onClick={() => setFilter('all')}
-              className={`px-6 py-3 rounded-lg font-semibold transition-all ${
+              className={`px-4 sm:px-5 lg:px-6 py-2 sm:py-2.5 lg:py-3 rounded-lg text-sm sm:text-base font-semibold transition-all ${
                 filter === 'all'
                   ? 'bg-gradient-to-r from-orange-500 to-red-500 text-white shadow-lg shadow-orange-500/50'
                   : 'bg-white/5 text-gray-400 hover:bg-white/10 border border-white/10'
@@ -140,7 +140,7 @@ export default function AdminPage() {
             </button>
             <button
               onClick={() => setFilter('complete')}
-              className={`px-6 py-3 rounded-lg font-semibold transition-all ${
+              className={`px-4 sm:px-5 lg:px-6 py-2 sm:py-2.5 lg:py-3 rounded-lg text-sm sm:text-base font-semibold transition-all ${
                 filter === 'complete'
                   ? 'bg-gradient-to-r from-green-500 to-emerald-500 text-white shadow-lg shadow-green-500/50'
                   : 'bg-white/5 text-gray-400 hover:bg-white/10 border border-white/10'
@@ -150,7 +150,7 @@ export default function AdminPage() {
             </button>
             <button
               onClick={() => setFilter('pending')}
-              className={`px-6 py-3 rounded-lg font-semibold transition-all ${
+              className={`px-4 sm:px-5 lg:px-6 py-2 sm:py-2.5 lg:py-3 rounded-lg text-sm sm:text-base font-semibold transition-all ${
                 filter === 'pending'
                   ? 'bg-gradient-to-r from-red-500 to-orange-500 text-white shadow-lg shadow-red-500/50'
                   : 'bg-white/5 text-gray-400 hover:bg-white/10 border border-white/10'
@@ -162,7 +162,7 @@ export default function AdminPage() {
         </div>
 
         {/* Teams Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 sm:gap-6 lg:gap-10">
           {filteredTeams.map((team, idx) => {
             const acceptedCount = team.members.filter(m => m.hasAcceptedInvitation).length;
             const isComplete = acceptedCount === team.members.length;
@@ -181,17 +181,17 @@ export default function AdminPage() {
                 } rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
                 
                 {/* Card */}
-                <div className="relative bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-lg border border-white/10 rounded-2xl p-8 hover:border-white/20 transition-all duration-300">
+                <div className="relative bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-lg border border-white/10 rounded-xl sm:rounded-2xl p-4 sm:p-6 lg:p-8 hover:border-white/20 transition-all duration-300">
                   {/* Team Header */}
-                  <div className="flex items-start justify-between mb-6">
+                  <div className="flex flex-col sm:flex-row items-start justify-between mb-4 sm:mb-6 gap-3 sm:gap-0">
                     <div className="flex-1">
-                      <div className="flex items-center gap-3 mb-2">
-                        <div className={`w-3 h-3 rounded-full ${
+                      <div className="flex items-center gap-2 sm:gap-3 mb-1 sm:mb-2">
+                        <div className={`w-2.5 sm:w-3 h-2.5 sm:h-3 rounded-full ${
                           isComplete ? 'bg-green-500' : 'bg-yellow-500'
                         } animate-pulse`}></div>
-                        <h2 className="text-2xl font-bold text-white">{team.teamName}</h2>
+                        <h2 className="text-xl sm:text-2xl font-bold text-white">{team.teamName}</h2>
                       </div>
-                      <div className="flex items-center gap-4 text-sm">
+                      <div className="flex flex-wrap items-center gap-2 sm:gap-4 text-xs sm:text-sm">
                         <span className="text-gray-400">ID: <span className="text-cyan-400 font-mono">{team.teamId}</span></span>
                         <span className="text-gray-400">
                           Status: <span className={`font-semibold ${isComplete ? 'text-green-400' : 'text-yellow-400'}`}>
@@ -202,7 +202,7 @@ export default function AdminPage() {
                     </div>
                     
                     {/* Completion Ring */}
-                    <div className="relative w-16 h-16">
+                    <div className="relative w-14 h-14 sm:w-16 sm:h-16">
                       <svg className="transform -rotate-90 w-16 h-16">
                         <circle
                           cx="32"
@@ -232,24 +232,24 @@ export default function AdminPage() {
                   </div>
 
                   {/* Members List */}
-                  <div className="space-y-3">
+                  <div className="space-y-2 sm:space-y-3">
                     {team.members.map((member, memberIdx) => (
                       <div
                         key={member.id}
-                        className="group/member relative bg-white/[0.02] hover:bg-white/[0.05] border border-white/5 hover:border-white/10 rounded-xl p-4 transition-all duration-300"
+                        className="group/member relative bg-white/[0.02] hover:bg-white/[0.05] border border-white/5 hover:border-white/10 rounded-lg sm:rounded-xl p-3 sm:p-4 transition-all duration-300"
                       >
-                        <div className="flex items-center gap-4">
+                        <div className="flex items-center gap-2 sm:gap-3 lg:gap-4">
                           {/* Member Number */}
-                          <div className="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-cyan-500/20 to-purple-500/20 rounded-lg flex items-center justify-center border border-cyan-500/30">
-                            <span className="text-cyan-400 font-bold text-sm">{memberIdx + 1}</span>
+                          <div className="flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-cyan-500/20 to-purple-500/20 rounded-lg flex items-center justify-center border border-cyan-500/30">
+                            <span className="text-cyan-400 font-bold text-xs sm:text-sm">{memberIdx + 1}</span>
                           </div>
 
                           {/* Member Info */}
                           <div className="flex-1 min-w-0">
-                            <div className="flex items-center gap-2 mb-1">
-                              <h3 className="text-white font-semibold truncate">{member.name}</h3>
+                            <div className="flex items-center gap-2 mb-0.5 sm:mb-1">
+                              <h3 className="text-sm sm:text-base text-white font-semibold truncate">{member.name}</h3>
                             </div>
-                            <div className="flex flex-wrap gap-3 text-xs">
+                            <div className="flex flex-wrap gap-2 sm:gap-3 text-[10px] sm:text-xs">
                               <span className="text-gray-400">
                                 <span className="text-gray-500">Roll:</span> <span className="text-purple-400 font-mono">{member.rollNumber}</span>
                               </span>
@@ -261,17 +261,17 @@ export default function AdminPage() {
 
                           {/* Status Indicator */}
                           <div className="flex-shrink-0">
-                            <div className={`relative w-12 h-12 rounded-lg border-2 ${
+                            <div className={`relative w-10 h-10 sm:w-12 sm:h-12 rounded-lg border-2 ${
                               member.hasAcceptedInvitation
                                 ? 'bg-green-500/20 border-green-500 shadow-lg shadow-green-500/50'
                                 : 'bg-red-500/20 border-red-500 shadow-lg shadow-red-500/50'
                             } transition-all duration-300 flex items-center justify-center`}>
                               {member.hasAcceptedInvitation ? (
-                                <svg className="w-6 h-6 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <svg className="w-5 h-5 sm:w-6 sm:h-6 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
                                 </svg>
                               ) : (
-                                <svg className="w-6 h-6 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <svg className="w-5 h-5 sm:w-6 sm:h-6 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M6 18L18 6M6 6l12 12" />
                                 </svg>
                               )}
@@ -288,7 +288,7 @@ export default function AdminPage() {
                   </div>
 
                   {/* Team Footer */}
-                  <div className="mt-6 pt-6 border-t border-white/10 flex items-center justify-between text-xs text-gray-500">
+                  <div className="mt-4 sm:mt-6 pt-4 sm:pt-6 border-t border-white/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 sm:gap-0 text-[10px] sm:text-xs text-gray-500">
                     <span>Created: {new Date(team.createdAt).toLocaleDateString()}</span>
                     {isComplete && (
                       <div className="flex items-center gap-2 text-green-400 font-semibold">
