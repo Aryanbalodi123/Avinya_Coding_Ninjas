@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import RippleGrid from '@/components/RippleGrid';
+import Particles from '@/components/Particles';
 
 export default function LoginPage() {
   const [username, setUsername] = useState('');
@@ -44,24 +45,19 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen bg-black text-white relative overflow-hidden flex items-center justify-center">
-      {/* RippleGrid Background */}
+      {/* Particles Background */}
       <div className="fixed inset-0 pointer-events-none">
-        <RippleGrid
-          enableRainbow={false}
-          gridColor="#ff7f00"
-          rippleIntensity={0.05}
-          gridSize={10}
-          gridThickness={15}
-          mouseInteraction={true}
-          mouseInteractionRadius={1.2}
-          opacity={0.8}
+        <Particles
+          particleColors={['#feb67c', '#ffffff']}
+          particleCount={200}
+          particleSpread={10}
+          speed={0.1}
+          particleBaseSize={100}
+          moveParticlesOnHover={true}
+          alphaParticles={false}
+          disableRotation={false}
         />
       </div>
-
-      {/* Floating Orbs */}
-      <div className="fixed top-20 left-20 w-96 h-96 bg-cyan-500/20 rounded-full blur-3xl animate-pulse"></div>
-      <div className="fixed bottom-20 right-20 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl animate-pulse" 
-           style={{ animationDelay: '1s' }}></div>
 
       {/* Login Card */}
       <div className="relative z-10 w-full max-w-md px-6">
