@@ -1,3 +1,5 @@
+'use client';
+
 import { useRef, useEffect } from 'react';
 import { Renderer, Program, Triangle, Mesh } from 'ogl';
 
@@ -18,7 +20,7 @@ type Props = {
 
 const RippleGrid: React.FC<Props> = ({
   enableRainbow = false,
-  gridColor = '#ffffff',
+  gridColor = '#ff8c00',
   rippleIntensity = 0.05,
   gridSize = 10.0,
   gridThickness = 15.0,
