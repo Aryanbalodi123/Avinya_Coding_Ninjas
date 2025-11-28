@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { Team } from '@/lib/types';
 import RippleGrid from '@/components/RippleGrid';
 
@@ -8,6 +9,7 @@ export default function AdminPage() {
   const [teams, setTeams] = useState<Team[]>([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState<'all' | 'complete' | 'pending'>('all');
+  const router = useRouter();
 
   useEffect(() => {
     fetchTeams();
@@ -22,6 +24,16 @@ export default function AdminPage() {
       console.error('Failed to fetch teams:', error);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleLogout = async () => {
+    try {
+      await fetch('/api/auth/logout', { method: 'POST' });
+      router.push('/login');
+      router.refresh();
+    } catch (error) {
+      console.error('Logout error:', error);
     }
   };
 
@@ -81,14 +93,25 @@ export default function AdminPage() {
       <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16 max-w-[1600px]">
         {/* Header */}
         <div className="mb-8 sm:mb-12 lg:mb-16">
-          <div className="flex items-center gap-3 sm:gap-4 mb-6 sm:mb-8">
-            <div className="w-1.5 sm:w-2 h-12 sm:h-16 bg-gradient-to-b from-orange-500 to-orange-700 rounded-full animate-pulse"></div>
-            <div>
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-orange-400 via-orange-500 to-orange-300 bg-clip-text text-transparent">
-                ADMIN CONTROL PANEL
-              </h1>
-              <p className="text-gray-400 mt-1 sm:mt-2 text-sm sm:text-base lg:text-lg">Real-time Team Management Dashboard</p>
+          <div className="flex items-center justify-between gap-3 sm:gap-4 mb-6 sm:mb-8">
+            <div className="flex items-center gap-3 sm:gap-4">
+              <div className="w-1.5 sm:w-2 h-12 sm:h-16 bg-gradient-to-b from-orange-500 to-orange-700 rounded-full animate-pulse"></div>
+              <div>
+                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-orange-400 via-orange-500 to-orange-300 bg-clip-text text-transparent">
+                  ADMIN CONTROL PANEL
+                </h1>
+                <p className="text-gray-400 mt-1 sm:mt-2 text-sm sm:text-base lg:text-lg">Real-time Team Management Dashboard</p>
+              </div>
             </div>
+            <button
+              onClick={handleLogout}
+              className="px-4 sm:px-6 py-2 sm:py-3 bg-red-500/20 hover:bg-red-500/30 border border-red-500/50 hover:border-red-500 text-red-400 hover:text-red-300 font-semibold rounded-lg transition-all duration-300 flex items-center gap-2 group"
+            >
+              <svg className="w-5 h-5 group-hover:rotate-12 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+              </svg>
+              <span className="hidden sm:inline">Logout</span>
+            </button>
           </div>
 
           {/* Stats Cards */}
