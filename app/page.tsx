@@ -1,25 +1,24 @@
-"use client";
-
-import { useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { redirect } from "next/navigation";
 
 export default function Home() {
-  const router = useRouter();
+  // 1. Try to get the ID from Environment Variables
+  const defaultTeamId = process.env.NEXT_PUBLIC_DEFAULT_TEAM_ID;
 
-  useEffect(() => {
-    const defaultTeamId = process.env.NEXT_PUBLIC_DEFAULT_TEAM_ID;
+  // 2. If it exists, redirect immediately (Server-side)
+  if (defaultTeamId) {
+    redirect(`/team/${defaultTeamId}`);
+  }
 
-    if (defaultTeamId) {
-      router.push(`/team/${defaultTeamId}`);
-    } else {
-      console.warn("No default team ID in .env, redirecting to team-01...");
-      router.push("/team/team-01"); 
-    }
-  }, [router]);
-
+  // 3. Fallback: If no Env Var is set, don't 404. Show a helpful message instead.
   return (
-    <div className="min-h-screen bg-black flex items-center justify-center text-white/50">
-      <span className="animate-pulse">Loading Team Portal...</span>
+    <div className="min-h-screen bg-black flex flex-col items-center justify-center text-white p-4 text-center">
+      <h1 className="text-2xl font-bold text-red-500 mb-2">Configuration Error</h1>
+      <p className="text-white/70">
+        No <code>NEXT_PUBLIC_DEFAULT_TEAM_ID</code> found in environment variables.
+      </p>
+      <p className="text-sm text-white/50 mt-4">
+        Please add this variable in your Vercel Project Settings.
+      </p>
     </div>
   );
 }
