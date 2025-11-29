@@ -251,8 +251,8 @@ const showToast = (msg: string) => {
       <div className="fixed inset-0 z-0">
         <GridScan
           scanDuration={6}
-          linesColor="#00E5FF"
-          scanColor="#FF00E5"
+  linesColor="#FFB84D"        // soft amber neon
+  scanColor="#E2852E"         // bright warm orange
           sensitivity={0.8}
           gridScale={0.15}
           scanOpacity={0.3}
