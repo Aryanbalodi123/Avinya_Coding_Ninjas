@@ -18,7 +18,7 @@ const GlassNavbar = ({ links }: { links: { label: string; href: string }[] }) =>
   transition={{ type: "spring", stiffness: 100, damping: 20 }}
   className="
     pointer-events-auto
-    bg-black/20 backdrop-blur-xl border border-white/10 shadow-lg shadow-black/20
+    bg-black/20 backdrop-blur-md border border-white/10 shadow-lg shadow-black/20
     rounded-full
 
     /* *** SLIM + MUCH LONGER PILL *** */
@@ -96,7 +96,7 @@ const GlassNavbar = ({ links }: { links: { label: string; href: string }[] }) =>
         className="
           fixed top-0 right-0 bottom-0 z-[9999]
           w-64
-          bg-black/60 backdrop-blur-2xl
+          bg-black/60 backdrop-blur-lg
           border-l border-white/10
           p-6
           flex flex-col gap-6

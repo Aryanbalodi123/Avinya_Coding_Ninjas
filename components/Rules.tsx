@@ -80,7 +80,7 @@ const Rules: React.FC<RulesProps> = ({ rules = defaultRules }) => {
                   {/* Main Card - Ultra Modern Asymmetric Shape with Deep Glass Effect */}
                   <motion.div
                     className="relative overflow-hidden
-                      bg-white/[0.03]
+                      bg-white/[0.08]
                       border-2 border-white/[0.15]
                       group-hover:border-white/[0.3]
                       transition-all duration-500 ease-out
@@ -98,10 +98,10 @@ const Rules: React.FC<RulesProps> = ({ rules = defaultRules }) => {
                     }}
                   >
                     {/* Deep Blur Glass Layer */}
-                    <div className="absolute inset-0 backdrop-blur-3xl bg-gradient-to-br from-white/[0.05] via-transparent to-white/[0.02]" />
+                    <div className="absolute inset-0 backdrop-blur-lg bg-gradient-to-br from-white/[0.1] via-transparent to-white/[0.04]" />
 
                     {/* Secondary Blur Layer for Extra Depth */}
-                    <div className="absolute inset-0 backdrop-blur-xl bg-black/20" />
+                    <div className="absolute inset-0 backdrop-blur-sm bg-black/30" />
 
                     {/* Subtle Color Tint */}
                     <div
@@ -123,12 +123,10 @@ const Rules: React.FC<RulesProps> = ({ rules = defaultRules }) => {
                       <div className="relative overflow-visible">
                         {/* MAIN NUMBER */}
                         <motion.div
-                          className="text-[120px] md:text-[280px] font-black leading-none pl-4 md:pl-8 pr-4 md:pr-8 select-none pointer-events-none"
+                          className="text-[100px] md:text-[200px] font-black leading-none pl-4 md:pl-8 pr-4 md:pr-8 select-none pointer-events-none"
                           style={{
-                            // Enhanced gradient fill with subtle outline
-                            background: 'linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(139,92,246,0.08) 50%, rgba(6,182,212,0.05) 100%)',
-                            WebkitBackgroundClip: 'text',
-                            WebkitTextFillColor: 'transparent',
+                            // White text color with gradient background
+                            color: 'rgba(255,255,255,0.5)',
                             textShadow:
                               '0 0 8px rgba(255,255,255,0.04), 0 6px 40px rgba(0,0,0,0.45)',
                             // Prominent text stroke for clear outline
@@ -158,7 +156,7 @@ const Rules: React.FC<RulesProps> = ({ rules = defaultRules }) => {
                           }}
                         >
                           <div
-                            className="text-[120px] md:text-[280px] font-black leading-none pl-4 md:pl-8 pr-4 md:pr-8 select-none"
+                            className="text-[80px] md:text-[180px] font-black leading-none select-none"
                             style={{
                               background: 'linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.01))',
                               WebkitBackgroundClip: 'text',
@@ -175,6 +173,7 @@ const Rules: React.FC<RulesProps> = ({ rules = defaultRules }) => {
                     {/* Floating Accent Elements - Refined */}
                     <motion.div
                       className="hidden md:block absolute top-8 right-8 w-2 h-2 rounded-full bg-gradient-to-br from-violet-400/60 to-cyan-400/60 opacity-50 group-hover:opacity-80 transition-opacity shadow-[0_0_10px_rgba(139,92,246,0.4)]"
+                      style={{ willChange: 'transform' }}
                       animate={!prefersReducedMotion ? { y: [0, -8, 0] } : {}}
                       transition={{
                         duration: 4,
@@ -184,6 +183,7 @@ const Rules: React.FC<RulesProps> = ({ rules = defaultRules }) => {
                     />
                     <motion.div
                       className="hidden md:block absolute top-12 right-14 w-1.5 h-1.5 rounded-full bg-gradient-to-br from-pink-400/50 to-violet-400/50 opacity-40 group-hover:opacity-70 transition-opacity shadow-[0_0_8px_rgba(236,72,153,0.3)]"
+                      style={{ willChange: 'transform' }}
                       animate={!prefersReducedMotion ? { y: [0, -6, 0] } : {}}
                       transition={{
                         duration: 3.5,
@@ -194,6 +194,7 @@ const Rules: React.FC<RulesProps> = ({ rules = defaultRules }) => {
                     />
                     <motion.div
                       className="hidden md:block absolute top-6 right-20 w-1 h-1 rounded-full bg-gradient-to-br from-cyan-400/40 to-pink-400/40 opacity-30 group-hover:opacity-60 transition-opacity shadow-[0_0_6px_rgba(6,182,212,0.3)]"
+                      style={{ willChange: 'transform' }}
                       animate={!prefersReducedMotion ? { y: [0, -5, 0] } : {}}
                       transition={{
                         duration: 3,
@@ -204,27 +205,13 @@ const Rules: React.FC<RulesProps> = ({ rules = defaultRules }) => {
                     />
 
                     {/* Content Container */}
-                    <div className="relative p-6 pl-24 pr-6 md:p-12 md:pl-48 md:pr-16">
-                      {/* Micro Accent Line Above Title */}
-                      <motion.div
-                        initial={{ scaleX: 0, opacity: 0 }}
-                        whileInView={{ scaleX: 1, opacity: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.5, delay: index * 0.15 + 0.15, ease: [0.22, 1, 0.36, 1] }}
-                        className="w-12 md:w-16 h-[2px] mb-4 md:mb-6 origin-left"
-                        style={{
-                          background: isEven
-                            ? 'linear-gradient(90deg, rgba(139,92,246,0.6), rgba(6,182,212,0.4))'
-                            : 'linear-gradient(90deg, rgba(236,72,153,0.6), rgba(139,92,246,0.4))'
-                        }}
-                      />
-
+                    <div className="relative p-8 pl-28 pr-8 md:p-14 md:pl-52 md:pr-20">
                       {/* Text Content */}
                       <div className="relative z-10">
                         {/* Title with Refined Typography */}
                         <motion.h3
-                          className="text-2xl md:text-4xl font-bold mb-3 md:mb-4 leading-tight tracking-tight
-                            text-white/90
+                          className="text-2xl md:text-4xl font-bold mb-4 md:mb-6 leading-tight tracking-tight
+                            text-white/80
                             group-hover:text-white
                             transition-all duration-400
                             drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)]"
@@ -327,7 +314,7 @@ const Rules: React.FC<RulesProps> = ({ rules = defaultRules }) => {
               className="relative p-6 px-8 md:p-8 md:px-12 rounded-3xl 
                 bg-white/[0.03]
                 border-2 border-white/[0.15]
-                backdrop-blur-2xl
+                backdrop-blur-md
                 shadow-[0_8px_32px_rgba(0,0,0,0.4),inset_0_1px_1px_rgba(255,255,255,0.08),0_0_0_1px_rgba(139,92,246,0.08)]
                 group-hover/cta:border-white/[0.25]
                 group-hover/cta:shadow-[0_12px_48px_rgba(139,92,246,0.2),inset_0_1px_1px_rgba(255,255,255,0.12),0_0_0_1px_rgba(139,92,246,0.2)]

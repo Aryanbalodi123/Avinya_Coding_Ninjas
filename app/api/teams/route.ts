@@ -12,7 +12,8 @@ export async function GET() {
     // Fetch all teams
     const teams = await db.collection('teams')
       .find({})
-      .project({ teamId: 1, teamName: 1, teamSize: 1 }) 
+      // Include _id so frontend can build /team/<_id> links
+      .project({ _id: 1, teamId: 1, teamName: 1, teamSize: 1 })
       .toArray();
       
     return NextResponse.json(teams);

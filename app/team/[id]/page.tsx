@@ -15,8 +15,8 @@ import EventMeta from "@/components/EventMeta";
 
 import Toast from "@/components/Toast";
 // --- DYNAMIC IMPORTS ---
-const GridScan = dynamic(
-  () => import("@/components/GridScan").then((mod) => mod.GridScan),
+const FloatingLines = dynamic(
+  () => import("@/components/FloatingLines"),
   {
     ssr: false,
     loading: () => <div className="fixed inset-0 bg-black" />,
@@ -58,7 +58,7 @@ const HeroSection = ({ teamName, teamId }: { teamName: string; teamId: string })
     <section className="h-screen w-full flex flex-col items-center justify-center relative snap-start snap-always overflow-hidden">
       <motion.div
         ref={ref}
-        style={{ y, opacity, scale, filter: blur }}
+        style={{ y, opacity, scale, filter: blur, willChange: 'transform, opacity' }}
         className="text-center relative z-10 flex flex-col items-center"
       >
  
@@ -66,7 +66,7 @@ const HeroSection = ({ teamName, teamId }: { teamName: string; teamId: string })
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1, duration: 0.8 }}
-          className="inline-block py-1 px-3 rounded-full bg-cyan-900/20 border border-cyan-500/30 text-xs font-mono text-cyan-300 mb-6 tracking-[0.3em] uppercase backdrop-blur-md shadow-[0_0_15px_rgba(34,211,238,0.3)]"
+          className="inline-block py-1 px-3 rounded-full bg-cyan-900/20 border border-cyan-500/30 text-xs font-mono text-cyan-300 mb-6 tracking-[0.3em] uppercase backdrop-blur-sm shadow-[0_0_15px_rgba(34,211,238,0.3)]"
         >
           AVINYA 3.0
         </motion.span>
@@ -137,8 +137,8 @@ const ScalingSection = ({
       className="min-h-screen w-full relative snap-start snap-always pt-32 pb-20 px-4 flex flex-col"
     >
       <motion.div 
-        style={{ scale, y, opacity, filter: blur }} 
-        className="text-center mb-24 relative z-10 origin-center flex flex-col items-center"
+        style={{ scale, y, opacity, filter: blur, willChange: 'transform, opacity' }} 
+        className="text-center mb-12 relative z-10 origin-center flex flex-col items-center"
       >
         {/* SECTION TITLE 
             - Reduced size: text-5xl md:text-7xl
@@ -249,17 +249,14 @@ const showToast = (msg: string) => {
 
       {/* Background */}
       <div className="fixed inset-0 z-0">
-        <GridScan
-          scanDuration={6}
-  linesColor="#FFB84D"        // soft amber neon
-  scanColor="#E2852E"         // bright warm orange
-          sensitivity={0.8}
-          gridScale={0.15}
-          scanOpacity={0.3}
-          enablePost={true}
-          bloomIntensity={0.8}
-          chromaticAberration={0.005}
-          noiseIntensity={0.02}
+        <FloatingLines
+          enabledWaves={['top', 'middle', 'bottom']}
+          lineCount={[8, 10, 12]}
+          lineDistance={[10, 8, 6]}
+          bendRadius={5.0}
+          bendStrength={-0.5}
+          interactive={true}
+          parallax={false}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/0 via-black/40 to-black/90" />
       </div>
@@ -284,20 +281,28 @@ const showToast = (msg: string) => {
         {/* OPERATIVES */}
 {/* OPERATIVES */}
 <ScalingSection id="members" title="OPERATIVES" subtitle="Team Roster">
-  <div className="w-full max-w-[900px] mx-auto px-4">
+  <div className="w-full max-w-[1000px] mx-auto px-4">
+    
+    {/* Black glass background container */}
+    <div className="relative p-8 rounded-3xl bg-black/40 backdrop-blur-md border border-white/10 shadow-[0_0_60px_rgba(0,0,0,0.5),inset_0_0_40px_rgba(0,0,0,0.3)]">
+      {/* Subtle grid pattern overlay */}
+      <div className="absolute inset-0 opacity-5 rounded-3xl" style={{
+        backgroundImage: 'url("data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")',
+      }} />
 
-    <div
-      className="
-        grid
-        grid-cols-1
-        sm:grid-cols-2
-        lg:grid-cols-2
-        gap-y-8
-        gap-x-4
-        pt-4
-        pb-4
-      "
-    >
+      <div
+        className="
+          grid
+          grid-cols-1
+          sm:grid-cols-2
+          lg:grid-cols-2
+          gap-y-10
+          gap-x-6
+          pt-4
+          pb-4
+          relative z-10
+        "
+      >
       {team.members.map((member, i) => (
         <motion.div
           key={member.id}
@@ -331,6 +336,7 @@ const showToast = (msg: string) => {
           />
         </motion.div>
       ))}
+      </div>
     </div>
 
   </div>
@@ -351,62 +357,123 @@ const showToast = (msg: string) => {
 
 <ScalingSection id="actions" title="INITIALIZE" subtitle="Verification Required">
   <div className="max-w-4xl w-full flex flex-col items-center text-center mx-auto pb-32">
-    <p className="text-white/50 text-lg mb-12 max-w-lg">
+    <p className="text-white/60 text-lg mb-12 max-w-lg font-light">
       To proceed with the operation, verify your identity and establish secure communication.
     </p>
 
-    <div className="w-full flex flex-col md:flex-row gap-6 items-center justify-center">
+    <div className="w-full flex flex-col gap-8 items-center justify-center">
 
-      {/* VERIFY BUTTON */}
-      <motion.button
-        whileHover={{ scale: 1.05, y: -2 }}
-        whileTap={{ scale: 0.98 }}
-        onClick={() => setIsVerifyModalOpen(true)}
-        className="
-          group relative overflow-hidden
-          bg-gradient-to-r from-orange-500/10 to-amber-500/10
-          border-2 border-orange-500/30
-          px-8 py-6 rounded-2xl
-          w-full md:w-auto md:min-w-[280px]
-          flex items-center gap-4 justify-center
-          transition-all duration-300
-          hover:border-orange-400
-          hover:shadow-[0_0_50px_rgba(251,146,60,0.3)]
-          backdrop-blur-sm
-        "
-      >
-        <ShieldCheck size={28} className="text-orange-400" />
-        <div className="flex flex-col items-start">
-          <span className="font-bold text-l text-white tracking-wide">VERIFY YOUR PRESENCE</span>
-          <span className="text-xs text-white/50 uppercase tracking-wider"></span>
-        </div>
-      </motion.button>
-
-      {/* WHATSAPP BUTTON */}
-      <motion.button
-        whileHover={{ scale: 1.05, y: -2 }}
-        whileTap={{ scale: 0.98 }}
-        onClick={handleWhatsappJoin}
-        className="
-          group relative overflow-hidden
-          bg-gradient-to-r from-green-500 to-emerald-600
-          border border-green-400/50
-          px-8 py-6 rounded-2xl
-          w-full md:w-auto md:min-w-[280px]
-          flex items-center justify-between gap-4
-          transition-all duration-300
-          hover:shadow-[0_0_50px_rgba(34,197,94,0.4)]
-        "
-      >
-        <div className="flex items-center gap-4">
-          <MessageCircle size={28} className="text-black" />
-          <div className="flex flex-col items-start">
-            <span className="font-bold text-xl text-black tracking-wide">EVENTS UPDATE</span>
-            <span className="text-xs text-black/70 uppercase tracking-wider">Join WhatsApp</span>
+      {/* WHATSAPP BUTTON - Enhanced Futuristic Style */}
+      <div className="relative group/wa w-full md:w-auto">
+        {/* Outer animated glow */}
+        <div className="absolute -inset-1 bg-gradient-to-r from-green-400/40 via-emerald-400/40 to-green-400/40 rounded-2xl blur-xl opacity-60 group-hover/wa:opacity-100 transition-all duration-700 animate-pulse" />
+        
+        <motion.button
+          whileHover={{ scale: 1.05, y: -4 }}
+          whileTap={{ scale: 0.98 }}
+          onClick={handleWhatsappJoin}
+          className="
+            relative overflow-hidden
+            bg-gradient-to-r from-green-600 via-emerald-500 to-green-600
+            border-2 border-green-400/60
+            px-10 py-7 rounded-2xl
+            w-full md:w-auto md:min-w-[320px]
+            flex items-center justify-between gap-5
+            transition-all duration-700
+            shadow-[0_0_40px_rgba(34,197,94,0.4),inset_0_0_20px_rgba(255,255,255,0.1)]
+            group-hover/wa:shadow-[0_0_60px_rgba(34,197,94,0.7),inset_0_0_30px_rgba(255,255,255,0.2)]
+            group-hover/wa:border-green-300/80
+            backdrop-blur
+          "
+        >
+          {/* Holographic shimmer effect */}
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover/wa:translate-x-full transition-transform duration-1000" />
+          
+          {/* Scanline effect */}
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-green-300/10 to-transparent opacity-0 group-hover/wa:opacity-100 animate-scan-line" />
+          
+          {/* Corner accents */}
+          <div className="absolute top-2 left-2 w-4 h-4 border-t-2 border-l-2 border-green-200/60 rounded-tl" />
+          <div className="absolute bottom-2 right-2 w-4 h-4 border-b-2 border-r-2 border-green-200/60 rounded-br" />
+          
+          <div className="flex items-center gap-4 relative z-10">
+            <div className="w-12 h-12 rounded-lg bg-white/20 flex items-center justify-center backdrop-blur-sm
+              shadow-[0_0_20px_rgba(255,255,255,0.3)]
+              group-hover/wa:shadow-[0_0_30px_rgba(255,255,255,0.5)]
+              transition-all duration-500">
+              <MessageCircle size={28} className="text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.8)]" />
+            </div>
+            <div className="flex flex-col items-start">
+              <span className="font-black text-2xl text-white tracking-wide drop-shadow-[0_0_10px_rgba(255,255,255,0.5)]">
+                EVENTS UPDATE
+              </span>
+              <span className="text-xs text-white/80 uppercase tracking-[0.2em] font-bold drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">
+                Join WhatsApp
+              </span>
+            </div>
           </div>
-        </div>
-        <ArrowUpRight size={20} className="text-black" />
-      </motion.button>
+          <ArrowUpRight size={24} className="text-white relative z-10 drop-shadow-[0_0_10px_rgba(255,255,255,0.6)]" />
+        </motion.button>
+      </div>
+
+      {/* VERIFY BUTTON - Enhanced Futuristic Style */}
+      <div className="relative group/verify w-full md:w-auto">
+        {/* Outer animated glow */}
+        <div className="absolute -inset-1 bg-gradient-to-r from-orange-400/40 via-amber-400/40 to-orange-400/40 rounded-2xl blur-xl opacity-60 group-hover/verify:opacity-100 transition-all duration-700 animate-pulse" />
+        
+        <motion.button
+          whileHover={{ scale: 1.05, y: -4 }}
+          whileTap={{ scale: 0.98 }}
+          onClick={() => setIsVerifyModalOpen(true)}
+          className="
+            relative overflow-hidden
+            bg-gradient-to-r from-orange-600/30 via-amber-600/30 to-orange-600/30
+            border-2 border-orange-400/60
+            px-10 py-7 rounded-2xl
+            w-full md:w-auto md:min-w-[320px]
+            flex items-center gap-5 justify-center
+            transition-all duration-700
+            shadow-[0_0_40px_rgba(251,146,60,0.3),inset_0_0_30px_rgba(251,146,60,0.1)]
+            group-hover/verify:shadow-[0_0_70px_rgba(251,146,60,0.6),inset_0_0_50px_rgba(251,146,60,0.2)]
+            group-hover/verify:border-orange-300/80
+            backdrop-blur-md
+          "
+        >
+          {/* Holographic shimmer effect */}
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-orange-300/30 to-transparent -translate-x-full group-hover/verify:translate-x-full transition-transform duration-1000" />
+          
+          {/* Scanline effect */}
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-orange-300/10 to-transparent opacity-0 group-hover/verify:opacity-100 animate-scan-line" />
+          
+          {/* Hexagonal pattern overlay */}
+          <div className="absolute inset-0 opacity-5" style={{
+            backgroundImage: 'url("data:image/svg+xml,%3Csvg width=\'28\' height=\'49\' viewBox=\'0 0 28 49\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'0.4\'%3E%3Cpath d=\'M13.99 9.25l13 7.5v15l-13 7.5L1 31.75v-15l12.99-7.5zM3 17.9v12.7l10.99 6.34 11-6.35V17.9l-11-6.34L3 17.9zM0 15l12.98-7.5V0h-2v6.35L0 12.69v2.3zm0 18.5L12.98 41v8h-2v-6.85L0 35.81v-2.3zM15 0v7.5L27.99 15H28v-2.31h-.01L17 6.35V0h-2zm0 49v-8l12.99-7.5H28v2.31h-.01L17 42.15V49h-2z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")',
+          }} />
+          
+          {/* Corner accents */}
+          <div className="absolute top-2 left-2 w-4 h-4 border-t-2 border-l-2 border-orange-300/60 rounded-tl" />
+          <div className="absolute top-2 right-2 w-4 h-4 border-t-2 border-r-2 border-orange-300/60 rounded-tr" />
+          <div className="absolute bottom-2 left-2 w-4 h-4 border-b-2 border-l-2 border-orange-300/60 rounded-bl" />
+          <div className="absolute bottom-2 right-2 w-4 h-4 border-b-2 border-r-2 border-orange-300/60 rounded-br" />
+          
+          <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-orange-500/40 to-amber-600/40 
+            border-2 border-orange-400/60 flex items-center justify-center relative z-10
+            shadow-[0_0_25px_rgba(251,146,60,0.5)]
+            group-hover/verify:shadow-[0_0_40px_rgba(251,146,60,0.8)]
+            group-hover/verify:border-orange-300/80
+            transition-all duration-500">
+            <ShieldCheck size={28} className="text-orange-200 drop-shadow-[0_0_15px_rgba(251,146,60,0.9)]" />
+          </div>
+          <div className="flex flex-col items-start relative z-10">
+            <span className="font-black text-xl text-white tracking-wide drop-shadow-[0_0_15px_rgba(251,146,60,0.6)]">
+              VERIFY YOUR PRESENCE
+            </span>
+            <span className="text-xs text-orange-100/70 uppercase tracking-[0.15em] font-bold">
+              Security Protocol
+            </span>
+          </div>
+        </motion.button>
+      </div>
 
     </div>
   </div>
