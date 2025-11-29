@@ -36,7 +36,7 @@ const Rules: React.FC<RulesProps> = ({ rules = defaultRules }) => {
   const prefersReducedMotion = useReducedMotion();
 
   return (
-    <div ref={containerRef} className="w-full relative py-16 md:py-32 px-4 overflow-hidden">
+    <div ref={containerRef} className="w-full relative py-0 px-4 overflow-hidden">
       {/* MAIN CONTENT */}
       <div className="relative z-10 max-w-[1200px] mx-auto">
         {/* RULES CARDS */}

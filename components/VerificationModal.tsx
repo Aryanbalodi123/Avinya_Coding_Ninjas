@@ -32,7 +32,7 @@ export default function VerificationModal({
       setSelectedId(null);
       setWhatsappJoined(false);
 
-      setTimeout(() => firstBtnRef.current?.focus(), 150);
+      setTimeout(() => firstBtnRef.current?.focus(), 50);
     }
   }, [isOpen]);
 
@@ -47,6 +47,7 @@ export default function VerificationModal({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1, backdropFilter: "blur(25px)" }}
             exit={{ opacity: 0, backdropFilter: "blur(0px)" }}
+            transition={{ duration: 0.15 }}
             onClick={onClose}
             className="absolute inset-0 bg-black/70"
           />
@@ -55,8 +56,8 @@ export default function VerificationModal({
           <motion.div
             initial={{ opacity: 0, y: 60, scale: 0.92 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 60, scale: 0.92 }}
-            transition={{ type: "spring", stiffness: 110, damping: 18 }}
+            exit={{ opacity: 0, y: 20, scale: 0.95 }}
+            transition={{ duration: 0.15 }}
             className="
               relative z-[201] 
               w-full h-[92vh]

@@ -268,8 +268,8 @@ const showToast = (msg: string) => {
       <div className="fixed inset-0 z-0">
         <LiquidEther
           colors={['#011559', '#0D47A1', '#1976D2', '#42A5F5', '#00E5FF']}
-          mouseForce={15}
-          cursorSize={150}
+          mouseForce={20}
+          cursorSize={200}
           isViscous={false}
           viscous={30}
           iterationsViscous={32}
@@ -277,8 +277,8 @@ const showToast = (msg: string) => {
           resolution={0.5}
           isBounce={false}
           autoDemo={true}
-          autoSpeed={0.3}
-          autoIntensity={2.0}
+          autoSpeed={0.6}
+          autoIntensity={3.5}
           takeoverDuration={0}
           autoResumeDelay={0}
           autoRampDuration={0}
