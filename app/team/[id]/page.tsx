@@ -15,8 +15,8 @@ import EventMeta from "@/components/EventMeta";
 
 import Toast from "@/components/Toast";
 // --- DYNAMIC IMPORTS ---
-const FloatingLines = dynamic(
-  () => import("@/components/FloatingLines"),
+const LiquidEther = dynamic(
+  () => import("@/components/LiquidEther"),
   {
     ssr: false,
     loading: () => <div className="fixed inset-0 bg-black" />,
@@ -25,6 +25,22 @@ const FloatingLines = dynamic(
 
 
 const WHATSAPP_LINK = "https://your-link-here.com"; // change this
+
+// Hook to detect mobile view
+const useIsMobile = () => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  return isMobile;
+};
 
 // === Types ===
 interface TeamMember {
@@ -66,7 +82,7 @@ const HeroSection = ({ teamName, teamId }: { teamName: string; teamId: string })
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1, duration: 0.8 }}
-          className="inline-block py-1 px-3 rounded-full bg-cyan-900/20 border border-cyan-500/30 text-xs font-mono text-cyan-300 mb-6 tracking-[0.3em] uppercase backdrop-blur-sm shadow-[0_0_15px_rgba(34,211,238,0.3)]"
+          className="inline-block py-3 px-6 rounded-full bg-cyan-900/20 border border-cyan-500/30 text-xl md:text-2xl font-mono text-cyan-300 mb-6 tracking-[0.3em] uppercase backdrop-blur-sm shadow-[0_0_15px_rgba(34,211,238,0.3)]"
         >
           AVINYA 3.0
         </motion.span>
@@ -202,6 +218,7 @@ export default function TeamPage() {
 
   const [team, setTeam] = useState<TeamData | null>(null);
   const [isVerifyModalOpen, setIsVerifyModalOpen] = useState(false);
+  const isMobile = useIsMobile();
 
 const [toast, setToast] = useState<string | null>(null);
 
@@ -249,16 +266,24 @@ const showToast = (msg: string) => {
 
       {/* Background */}
       <div className="fixed inset-0 z-0">
-        <FloatingLines
-          enabledWaves={['top', 'middle', 'bottom']}
-          lineCount={[8, 10, 12]}
-          lineDistance={[10, 8, 6]}
-          bendRadius={5.0}
-          bendStrength={-0.5}
-          interactive={true}
-          parallax={false}
+        <LiquidEther
+          colors={['#011559', '#0D47A1', '#1976D2', '#42A5F5', '#00E5FF']}
+          mouseForce={15}
+          cursorSize={150}
+          isViscous={false}
+          viscous={30}
+          iterationsViscous={32}
+          iterationsPoisson={32}
+          resolution={0.5}
+          isBounce={false}
+          autoDemo={true}
+          autoSpeed={0.3}
+          autoIntensity={2.0}
+          takeoverDuration={0}
+          autoResumeDelay={0}
+          autoRampDuration={0}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/0 via-black/40 to-black/90" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/0 via-black/30 to-black/80" />
       </div>
 
       {/* Navbar */}
@@ -283,60 +308,51 @@ const showToast = (msg: string) => {
 <ScalingSection id="members" title="OPERATIVES" subtitle="Team Roster">
   <div className="w-full max-w-[1000px] mx-auto px-4">
     
-    {/* Black glass background container */}
-    <div className="relative p-8 rounded-3xl bg-black/40 backdrop-blur-md border border-white/10 shadow-[0_0_60px_rgba(0,0,0,0.5),inset_0_0_40px_rgba(0,0,0,0.3)]">
-      {/* Subtle grid pattern overlay */}
-      <div className="absolute inset-0 opacity-5 rounded-3xl" style={{
-        backgroundImage: 'url("data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")',
-      }} />
-
-      <div
-        className="
-          grid
-          grid-cols-1
-          sm:grid-cols-2
-          lg:grid-cols-2
-          gap-y-10
-          gap-x-6
-          pt-4
-          pb-4
-          relative z-10
-        "
+    <div
+      className="
+        grid
+        grid-cols-1
+        sm:grid-cols-2
+        lg:grid-cols-2
+        gap-y-10
+        gap-x-6
+        pt-4
+        pb-4
+      "
+    >
+    {team.members.map((member, i) => (
+      <motion.div
+        key={member.id}
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ delay: i * 0.1, duration: 0.6 }}
+        viewport={{ once: true, margin: "-50px" }}
+        className="w-full flex justify-center"
       >
-      {team.members.map((member, i) => (
-        <motion.div
-          key={member.id}
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: i * 0.1, duration: 0.6 }}
-          viewport={{ once: true, margin: "-50px" }}
-          className="w-full flex justify-center"
-        >
-          <TeamCard
-            member={member}
-            onAccept={async () => {
-              try {
-                const res = await fetch(`/api/teams/${id}`, {
-                  method: "PATCH",
-                  headers: { "Content-Type": "application/json" },
-                  body: JSON.stringify({
-                    memberId: member.id,
-                    hasAcceptedInvitation: true,
-                  }),
-                });
+        <TeamCard
+          member={member}
+          onAccept={async () => {
+            try {
+              const res = await fetch(`/api/teams/${id}`, {
+                method: "PATCH",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                  memberId: member.id,
+                  hasAcceptedInvitation: true,
+                }),
+              });
 
-                if (!res.ok) return;
+              if (!res.ok) return;
 
-                const updated = await res.json();
-                setTeam(updated);
-              } catch (err) {
-                console.error(err);
-              }
-            }}
-          />
-        </motion.div>
-      ))}
-      </div>
+              const updated = await res.json();
+              setTeam(updated);
+            } catch (err) {
+              console.error(err);
+            }
+          }}
+        />
+      </motion.div>
+    ))}
     </div>
 
   </div>
