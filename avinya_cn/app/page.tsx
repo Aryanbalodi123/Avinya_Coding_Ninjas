@@ -10,10 +10,10 @@ export default function Home() {
     const defaultTeamId = process.env.NEXT_PUBLIC_DEFAULT_TEAM_ID;
 
     if (defaultTeamId) {
-      router.push(`/teams/${defaultTeamId}`);
+      router.push(`/team/${defaultTeamId}`);
     } else {
       console.warn("No default team ID in .env, redirecting to team-01...");
-      router.push("/teams/team-01");
+      router.push("/team/team-01"); 
     }
   }, [router]);
 
