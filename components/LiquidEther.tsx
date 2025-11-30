@@ -324,7 +324,7 @@ export default function LiquidEther({
       target = new THREE.Vector2();
       lastTime = performance.now();
       activationTime = 0;
-      margin = 0.2;
+      margin = 0.5;
       private _tmpDir = new THREE.Vector2();
       constructor(
         mouse: MouseClass,
@@ -951,7 +951,14 @@ export default function LiquidEther({
       }
       update() {
         if (this.options.isBounce) this.boundarySpace.set(0, 0);
-        else this.boundarySpace.copy(this.cellScale);
+        else {
+          // Add minimum boundary padding to prevent edge distortion on mobile
+          const minBoundary = 0.005;
+          this.boundarySpace.set(
+            Math.max(this.cellScale.x, minBoundary),
+            Math.max(this.cellScale.y, minBoundary)
+          );
+        }
         this.advection.update({ dt: this.options.dt, isBounce: this.options.isBounce, BFECC: this.options.BFECC });
         this.externalForce.update({
           cursor_size: this.options.cursor_size,
