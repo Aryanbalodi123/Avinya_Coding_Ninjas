@@ -316,7 +316,7 @@ export default function TeamPage() {
       <div className="fixed top-0 left-0 right-0 z-50">
         <GlassNavbar
           links={[
-            { label: "Home", href: "/" },
+            { label: "Home", href: `/team/${id}` },
             { label: "Team", href: "#members" },
             { label: "Event", href: "#event" },
             { label: "Rules", href: "#rules" },
