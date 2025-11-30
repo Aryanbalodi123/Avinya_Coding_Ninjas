@@ -247,11 +247,52 @@ export default function TeamPage() {
   const isMobile = useIsMobile();
 
   const [toast, setToast] = useState<string | null>(null);
+  const [liquidEtherSettings, setLiquidEtherSettings] = useState({
+    resolution: 0.5,
+    iterationsPoisson: 32,
+    mouseForce: 20,
+    cursorSize: 100,
+    autoSpeed: 0.3,
+    autoIntensity: 1.8,
+  });
 
   const showToast = (msg: string) => {
     setToast(msg);
     setTimeout(() => setToast(null), 2300); // auto hide
   };
+
+  // Optimize LiquidEther settings based on screen size
+  useEffect(() => {
+    const updateSettings = () => {
+      const isDesktop = window.innerWidth >= 768;
+      
+      if (isDesktop) {
+        // Desktop: Lower resolution and iterations for performance
+        setLiquidEtherSettings({
+          resolution: 0.5,
+          iterationsPoisson: 25,
+          mouseForce: 22,
+          cursorSize: 100,
+          autoSpeed: 0.3,
+          autoIntensity: 1.8,
+        });
+      } else {
+        // Mobile: Keep current settings
+        setLiquidEtherSettings({
+          resolution: 1,
+          iterationsPoisson: 41,
+          mouseForce: 28,
+          cursorSize: 120,
+          autoSpeed: 0.4,
+          autoIntensity: 2.2,
+        });
+      }
+    };
+
+    updateSettings();
+    window.addEventListener('resize', updateSettings);
+    return () => window.removeEventListener('resize', updateSettings);
+  }, []);
 
   const handleWhatsappJoin = () => {
     // open the constant link so UI button behavior is identical
@@ -294,19 +335,19 @@ export default function TeamPage() {
       <div className="fixed inset-0 z-0">
         <LiquidEther
           colors={['#1E3A8A', '#0EA5E9', '#06B6D4', '#22D3EE', '#67E8F9']}
-          mouseForce={28}
-          cursorSize={120}
+          mouseForce={liquidEtherSettings.mouseForce}
+          cursorSize={liquidEtherSettings.cursorSize}
           isViscous={false}
           viscous={30}
           iterationsViscous={32}
-          iterationsPoisson={41}
-          resolution={1}
+          iterationsPoisson={liquidEtherSettings.iterationsPoisson}
+          resolution={liquidEtherSettings.resolution}
           isBounce={false}
           autoDemo={true}
-          autoSpeed={0.4}
-          autoIntensity={2.2}
+          autoSpeed={liquidEtherSettings.autoSpeed}
+          autoIntensity={liquidEtherSettings.autoIntensity}
           takeoverDuration={0.25}
-          autoResumeDelay={100}
+          autoResumeDelay={0}
           autoRampDuration={0.6}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-[#0A1628]/0 via-[#0A1628]/40 to-[#0A1628]/90" />
