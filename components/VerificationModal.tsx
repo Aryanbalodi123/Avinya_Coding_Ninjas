@@ -155,16 +155,22 @@ export default function VerificationModal({
                         className={`
                           w-6 h-6 rounded-full border-2 flex items-center justify-center
                           ${
-                            selected ? "border-orange-400" : "border-white/30"
+                            m.hasAcceptedInvitation
+                              ? "border-green-400 bg-green-500/20"
+                              : selected 
+                              ? "border-orange-400" 
+                              : "border-white/30"
                           }
                         `}
                       >
-                        {selected && (
+                        {m.hasAcceptedInvitation ? (
+                          <Check size={14} className="text-green-400" strokeWidth={3} />
+                        ) : selected ? (
                           <motion.div
                             layoutId="selectedRadioNexus"
                             className="w-3 h-3 rounded-full bg-orange-400"
                           />
-                        )}
+                        ) : null}
                       </div>
                     </motion.button>
                   );
