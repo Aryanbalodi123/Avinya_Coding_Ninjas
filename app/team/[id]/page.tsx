@@ -445,7 +445,7 @@ export default function TeamPage() {
               transition-all duration-500">
                       <MessageCircle size={28} className="text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.8)]" />
                     </div>
-                    <div className="flex flex-col items-start md:items-start items-center">
+                    <div className="flex flex-col items-center md:items-start">
                       <span className="font-black text-xl md:text-2xl text-white tracking-wide drop-shadow-[0_0_10px_rgba(255,255,255,0.5)]">
                         Join WhatsApp
                       </span>
@@ -505,7 +505,7 @@ export default function TeamPage() {
             transition-all duration-500">
                     <ShieldCheck size={28} className="text-orange-200 drop-shadow-[0_0_15px_rgba(251,146,60,0.9)]" />
                   </div>
-                  <div className="flex flex-col items-start md:items-start items-center relative z-10">
+                  <div className="flex flex-col items-center md:items-start relative z-10">
                     <span className="font-black text-base md:text-xl text-white tracking-wide drop-shadow-[0_0_15px_rgba(251,146,60,0.6)]">
                       VERIFY YOUR PRESENCE
                     </span>

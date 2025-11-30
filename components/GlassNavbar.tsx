@@ -34,29 +34,42 @@ const GlassNavbar = ({ links }: { links: { label: string; href: string }[] }) =>
   "
 >
 
-          {/* --- LEFT: LOGO --- */}
-          <div className="relative cursor-pointer flex items-center justify-center">
-            <div className="absolute -inset-2 bg-cyan-400/30 blur-xl opacity-60"></div>
+          {/* --- LEFT: LOGO & TITLE --- */}
+          <div className="flex items-center gap-4">
+            <div className="relative cursor-pointer flex items-center justify-center">
+              <div className="absolute -inset-3 bg-cyan-500/40 blur-2xl opacity-70 animate-pulse"></div>
+              <div className="absolute -inset-2 bg-blue-400/30 blur-lg opacity-80"></div>
 
-            <Image
-              src="/logo.png"
-              alt="Logo"
-              width={48}
-              height={48}
+              <Image
+                src="/logo.png"
+                alt="Logo"
+                width={48}
+                height={48}
+                className="
+                  relative z-10 object-cover rounded-full
+                "
+              />
+            </div>
+
+            <h1
               className="
-                relative z-10 rounded-full object-cover
-                border border-white/20
-                shadow-[0_0_12px_rgba(0,255,255,0.3)]
+                text-white tracking-widest font-bold 
+                text-sm md:text-lg
+                select-none
+                hidden md:block
               "
-            />
+            >
+              AVINYA 3.0
+            </h1>
           </div>
 
-          {/* --- CENTER TITLE (AVINYA 3.0) --- */}
+          {/* --- CENTER TITLE (MOBILE ONLY) --- */}
           <h1
             className="
               text-white tracking-widest font-bold 
-              text-sm md:text-lg
+              text-sm
               select-none
+              md:hidden
             "
           >
             AVINYA 3.0
