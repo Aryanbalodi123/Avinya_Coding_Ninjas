@@ -139,8 +139,7 @@ const TeamCard = ({ member }: TeamCardProps) => {
                 </svg>
               </div>
               <div>
-                <span className="text-[10px] md:text-xs font-bold text-gray-400/70 tracking-widest uppercase block">OPERATIVE</span>
-                <span className="text-[9px] text-gray-300/40 font-mono">ID-{member.id.slice(0, 6)}</span>
+                <span className="text-[10px] md:text-xs font-bold text-gray-400/70 tracking-widest uppercase block">ID-{member.id.slice(0, 6)}</span>
               </div>
             </div>
             
