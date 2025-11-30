@@ -446,58 +446,6 @@ export default function TeamPage() {
 
             <div className="w-full flex flex-col gap-8 items-center justify-center">
 
-              {/* WHATSAPP BUTTON - Enhanced Futuristic Style */}
-              <div className="relative group/wa w-full md:w-auto">
-                {/* Outer animated glow */}
-                <div className="absolute -inset-1 bg-gradient-to-r from-green-400/40 via-emerald-400/40 to-green-400/40 rounded-2xl blur-xl opacity-60 group-hover/wa:opacity-100 transition-all duration-700 animate-pulse" />
-
-                <motion.button
-                  whileHover={{ scale: 1.05, y: -4 }}
-                  whileTap={{ scale: 0.98 }}
-                  onClick={handleWhatsappJoin}
-                  className="
-            relative overflow-hidden
-            bg-gradient-to-r from-green-600 via-emerald-500 to-green-600
-            border-2 border-green-400/60
-            px-10 py-7 rounded-2xl
-            w-full md:w-auto md:min-w-[320px]
-            flex items-center justify-between gap-5
-            transition-all duration-700
-            shadow-[0_0_40px_rgba(34,197,94,0.4),inset_0_0_20px_rgba(255,255,255,0.1)]
-            group-hover/wa:shadow-[0_0_60px_rgba(34,197,94,0.7),inset_0_0_30px_rgba(255,255,255,0.2)]
-            group-hover/wa:border-green-300/80
-            backdrop-blur
-          "
-                >
-                  {/* Holographic shimmer effect */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover/wa:translate-x-full transition-transform duration-1000" />
-
-                  {/* Scanline effect */}
-                  <div className="absolute inset-0 bg-gradient-to-b from-transparent via-green-300/10 to-transparent opacity-0 group-hover/wa:opacity-100 animate-scan-line" />
-
-                  {/* Corner accents */}
-                  <div className="absolute top-2 left-2 w-4 h-4 border-t-2 border-l-2 border-green-200/60 rounded-tl" />
-                  <div className="absolute bottom-2 right-2 w-4 h-4 border-b-2 border-r-2 border-green-200/60 rounded-br" />
-
-                  <div className="flex items-center gap-4 relative z-10">
-                    <div className="w-12 h-12 rounded-lg bg-white/20 flex items-center justify-center backdrop-blur-sm
-              shadow-[0_0_20px_rgba(255,255,255,0.3)]
-              group-hover/wa:shadow-[0_0_30px_rgba(255,255,255,0.5)]
-              transition-all duration-500">
-                      <MessageCircle size={28} className="text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.8)]" />
-                    </div>
-                    <div className="flex flex-col items-center md:items-start">
-                      <span className="font-black text-xl md:text-2xl text-white tracking-wide drop-shadow-[0_0_10px_rgba(255,255,255,0.5)]">
-                        Join WhatsApp
-                      </span>
-                      <span className="text-xs text-white/80 uppercase tracking-[0.15em] md:tracking-[0.2em] font-bold drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">
-                        EVENTS UPDATE
-                      </span>
-                    </div>
-                  </div>
-                </motion.button>
-              </div>
-
               {/* VERIFY BUTTON - Enhanced Futuristic Style */}
               <div className="relative group/verify w-full md:w-auto">
                 {/* Outer animated glow */}
