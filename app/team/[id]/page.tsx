@@ -306,7 +306,7 @@ export default function TeamPage() {
           autoSpeed={0.4}
           autoIntensity={2.2}
           takeoverDuration={0.25}
-          autoResumeDelay={3000}
+          autoResumeDelay={100}
           autoRampDuration={0.6}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-[#0A1628]/0 via-[#0A1628]/40 to-[#0A1628]/90" />
