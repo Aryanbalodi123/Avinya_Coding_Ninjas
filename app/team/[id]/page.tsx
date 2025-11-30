@@ -294,13 +294,13 @@ export default function TeamPage() {
       <div className="fixed inset-0 z-0">
         <LiquidEther
           colors={['#1E3A8A', '#0EA5E9', '#06B6D4', '#22D3EE', '#67E8F9']}
-          mouseForce={28}
+          mouseForce={0}
           cursorSize={120}
           isViscous={false}
           viscous={30}
           iterationsViscous={32}
           iterationsPoisson={41}
-          resolution={0.5}
+          resolution={1}
           isBounce={false}
           autoDemo={true}
           autoSpeed={0.4}
