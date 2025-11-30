@@ -372,7 +372,7 @@ export default function TeamPage() {
 
         {/* OPERATIVES */}
         {/* OPERATIVES */}
-        <ScalingSection id="members" title="OPERATIVES" subtitle="Team Roster">
+        <ScalingSection id="members" title="MEMBERS" subtitle="Team Roster">
           <div className="w-full max-w-[1000px] mx-auto px-4">
 
             <div
