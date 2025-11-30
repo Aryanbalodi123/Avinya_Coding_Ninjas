@@ -24,7 +24,7 @@ const LiquidEther = dynamic(
 );
 
 
-const WHATSAPP_LINK = "https://your-link-here.com"; // change this
+const WHATSAPP_LINK = "https://chat.whatsapp.com/KnlU1djH2Mz6j7rSyncnVu?mode=wwt";
 
 // Hook to detect mobile view
 const useIsMobile = () => {
