@@ -347,7 +347,7 @@ export default function TeamPage() {
           autoSpeed={liquidEtherSettings.autoSpeed}
           autoIntensity={liquidEtherSettings.autoIntensity}
           takeoverDuration={0.25}
-          autoResumeDelay={2000}
+          autoResumeDelay={0}
           autoRampDuration={0.6}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-[#0A1628]/0 via-[#0A1628]/40 to-[#0A1628]/90" />
