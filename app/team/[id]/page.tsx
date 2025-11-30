@@ -269,12 +269,12 @@ const showToast = (msg: string) => {
         <LiquidEther
           colors={['#011559', '#0D47A1', '#1976D2', '#42A5F5', '#00E5FF']}
           mouseForce={20}
-          cursorSize={200}
-          isViscous={false}
-          viscous={30}
-          iterationsViscous={32}
-          iterationsPoisson={32}
-          resolution={0.5}
+          cursorSize={250}
+          isViscous={true}
+          viscous={40}
+          iterationsViscous={40}
+          iterationsPoisson={40}
+          resolution={0.65}
           isBounce={false}
           autoDemo={true}
           autoSpeed={0.6}
