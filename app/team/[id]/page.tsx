@@ -12,6 +12,7 @@ import GlassNavbar from "@/components/GlassNavbar";
 import Rules from "@/components/Rules";
 import VerificationModal from "@/components/VerificationModal";
 import EventMeta from "@/components/EventMeta";
+import PrizePool from "@/components/PrizePool";
 
 import Toast from "@/components/Toast";
 // --- DYNAMIC IMPORTS ---
@@ -431,6 +432,11 @@ export default function TeamPage() {
         {/* EVENT DETAILS */}
         <ScalingSection id="event" title="EVENT DETAILS" subtitle="Venue • Date • Time">
           <EventMeta />
+        </ScalingSection>
+
+        {/* PRIZE POOL */}
+        <ScalingSection id="prizes" title="PRIZE POOL" subtitle="Rewards & Recognition">
+          <PrizePool />
         </ScalingSection>
 
         {/* RULES */}

@@ -28,11 +28,6 @@ const defaultRules: Rule[] = [
     id: 3,
     title: "Project Preparation",
     description: "Students should come prepared with their project and presentation ready for evaluation.",
-  },
-  {
-    id: 4,
-    title: "Prize Pool",
-    description: "Prizes worth Rs. 5000, Rs. 3000, and Rs. 2000 will be given to top 3 positions.",
   }
 ];
 
