@@ -454,11 +454,6 @@ export default function TeamPage() {
           <ContactUs />
         </ScalingSection>
 
-        {/* ABOUT US */}
-        <ScalingSection id="about" title="ABOUT" subtitle="Who We Are">
-          <AboutUs />
-        </ScalingSection>
-
         <ScalingSection id="actions" title="INITIALIZE" subtitle="Verification Required">
           <div className="max-w-4xl w-full flex flex-col items-center text-center mx-auto pb-32">
             <p className="text-white/60 text-lg mb-12 max-w-lg font-light">
@@ -562,6 +557,12 @@ export default function TeamPage() {
         }}
 
       />
+
+      {/* ABOUT US */}
+      <ScalingSection id="about" title="ABOUT" subtitle="Who We Are">
+        <AboutUs />
+      </ScalingSection>
+
       <Toast message={toast || ""} show={toast !== null} />
 
     </div>
