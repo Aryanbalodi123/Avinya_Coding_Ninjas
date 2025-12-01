@@ -14,6 +14,7 @@ import VerificationModal from "@/components/VerificationModal";
 import EventMeta from "@/components/EventMeta";
 import PrizePool from "@/components/PrizePool";
 import ContactUs from "@/components/ContactUs";
+import AboutUs from "@/components/AboutUs";
 
 import Toast from "@/components/Toast";
 // --- DYNAMIC IMPORTS ---
@@ -448,6 +449,11 @@ export default function TeamPage() {
         {/* CONTACT US */}
         <ScalingSection id="contact" title="CONTACT" subtitle="Event Coordinators">
           <ContactUs />
+        </ScalingSection>
+
+        {/* ABOUT US */}
+        <ScalingSection id="about" title="ABOUT" subtitle="Who We Are">
+          <AboutUs />
         </ScalingSection>
 
         <ScalingSection id="actions" title="INITIALIZE" subtitle="Verification Required">
