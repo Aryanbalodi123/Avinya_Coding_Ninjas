@@ -148,13 +148,6 @@ export default function ContactUs() {
 
                     {/* Decorative line */}
                     <div className="mt-6 h-[2px] bg-gradient-to-r from-transparent via-gray-400/30 to-transparent group-hover/card:via-gray-300/50 transition-all duration-500" />
-
-                    {/* Bottom accent dots */}
-                    <div className="flex justify-center gap-2 mt-4">
-                      <div className="w-1.5 h-1.5 rounded-full bg-gradient-to-r from-gray-400 to-gray-300" />
-                      <div className="w-1.5 h-1.5 rounded-full bg-gradient-to-r from-gray-400 to-gray-300 opacity-60" />
-                      <div className="w-1.5 h-1.5 rounded-full bg-gradient-to-r from-gray-400 to-gray-300 opacity-30" />
-                    </div>
                   </div>
                 </motion.div>
               ))}
