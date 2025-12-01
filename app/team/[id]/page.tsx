@@ -363,7 +363,10 @@ export default function TeamPage() {
             { label: "Home", href: `/team/${id}` },
             { label: "Team", href: "#members" },
             { label: "Event", href: "#event" },
-            { label: "Rules", href: "#rules" },
+            { label: "Prizes", href: "#prizes" },
+            { label: "Protocols", href: "#rules" },
+            { label: "Contact", href: "#contact" },
+            { label: "About", href: "#about" },
           ]}
         />
       </div>
