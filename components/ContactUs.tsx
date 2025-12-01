@@ -15,6 +15,7 @@ export default function ContactUs() {
     {
       name: "Anishka",
       phone: "+91 7082534677",
+      email: "anishka0112.be23@chitkara.edu.in",
       role: "Event Coordinator",
       delay: 0.2,
     },
