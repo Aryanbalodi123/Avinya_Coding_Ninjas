@@ -10,6 +10,7 @@ html, body, #__next {
   padding: 0;
   background-color: #000 !important;
   color: #fff !important;
+  overflow-x: hidden !important;
 }
 
 /* Optional: ensure root elements have no accidental backgrounds */

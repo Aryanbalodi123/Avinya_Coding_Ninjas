@@ -23,12 +23,13 @@ const GlassNavbar = ({ links }: { links: { label: string; href: string }[] }) =>
 
     /* *** SLIM + MUCH LONGER PILL *** */
     py-2 md:py-3
-    px-8                  /* mobile padding */
+    px-4 md:px-8          /* mobile padding */
     md:px-32              /* HUGE desktop padding */
-    min-w-[70%] md:min-w-[900px]  /* stretch wide on desktop */
+    w-[calc(100%-2rem)] md:min-w-[900px]  /* responsive width */
+    max-w-[95vw] md:max-w-none
 
     flex items-center justify-between
-    gap-6 md:gap-16       /* spaced out interior */
+    gap-4 md:gap-16       /* spaced out interior */
 
     hover:bg-white/10 transition-colors duration-300
   "
